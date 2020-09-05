@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json data load</title>
+</head>
+<body>
+    <h1>Those are all data load from json placeHolder.</h1>
+    <ul id="users-container"></ul>
+    <ul id="comment"></ul>
+   
+    <script>
+        fetch('http://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => displayUsers(json))
+
+     
+
+        function displayUsers(dog) {
+            const userName = dog.map(dogs => dogs.username);
+            const ul = document.getElementById("comment");
+            for(let i = 0; i<userName.length; i++){
+                const user = userName[i];
+                const li = document.createElement("li");
+                li.innerText = user;
+                ul.appendChild(li);
+            }
+        }
+        
+
+        
+
+        fetch('http://jsonplaceholder.typicode.com/comments')
+        .then(response => response.json())
+        .then(json => display(json))
+
+
+            function display(com) {
+               const comments = com.map(com => com.email);
+               const ulComments = document.getElementById("users-container");
+               for(let i = 0; i<comments.length; i++){
+                   const allCom = comments[i];
+                   const li0 = document.createElement("li");
+                   li0.innerText = allCom;
+                   ulComments.appendChild(li0);
+
+
+               }
+            }
+        </script>
+</body>
+</html>
